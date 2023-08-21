@@ -9,9 +9,15 @@ async function criarVideo(evento) {
     const titulo = document.querySelector('[data-titulo]').value;
     const descricao = Math.floor(Math.random() * 10).toString();
 
-    await conectaApi.criaVideos(titulo, descricao, url, imagem);
+    try {
+        await conectaApi.criaVideos(titulo, descricao, url, imagem);
+        
+        window.location.href = 'envio-concluido.html';
+    } catch (e) {
+        alert(e);
+    }
 
-    window.location.href = 'envio-concluido.html';
+
 }
 
 furmulario.addEventListener("submit", evento => criarVideo(evento))
